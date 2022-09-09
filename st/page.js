@@ -11,7 +11,7 @@ function getDevices()
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
+        receiveDevices(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
