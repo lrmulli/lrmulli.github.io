@@ -22,7 +22,15 @@
             </ul>
             </header>
         </div>
-        <div class="container">
+        <div id="auth" class="container">
+            <form>
+                <div class="mb-3">
+                  <label for="patToken" class="form-label">PAT</label>
+                  <input type="password" class="form-control" id="patToken" aria-describedby="patTokenHelp">
+                  <div id="patTokenHelp" class="form-text">Please enter your PAT token</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
         </div>
     </main>
 
