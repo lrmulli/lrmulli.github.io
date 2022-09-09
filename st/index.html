@@ -34,26 +34,7 @@
         </div>
         <div id="devices" class="container">
             <div class="accordion" id="locationAccordian">
-
-            </div>
-            <div className="accordion" id="typesAcc">
-                {types.map((type, id) => (
-                    <div className="card">
-                        <div className="card-header mx-auto" id={`heading${id}`}>
-                            <h5>
-                                <button className="btn collapsed" type="button" data-toggle="collapse" data-target={`#collapse${id}`} aria-expanded="false" aria-controls={`collapse${id}`}>
-                                    {type.title}
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id={`collapse${id}`} className="collapse" aria-labelledby={`heading${id}`} data-parent="#typesAcc">
-                            <div class=" card card-body lead">
-                                {type.article}
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                
             </div>
         </div>
     </main>

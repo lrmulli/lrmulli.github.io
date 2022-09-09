@@ -1,15 +1,5 @@
 var patToken = "";
 var locations = {}
-const types = [
-    {
-        title: 'Title 1',
-        article: 'Article 1'
-    },
-    {
-        title: 'Title 2',
-        article: 'Article 2'
-    }
-]
 
 document.querySelector('#authform').addEventListener('submit', function(event) {
     patToken = document.querySelector('#patToken').value
@@ -23,7 +13,7 @@ function getLocations()
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        receiveDevices(xmlHttp.responseText);
+        receiveLocations(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/locations/", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
@@ -32,6 +22,10 @@ function getLocations()
 function receiveLocations(response)
 {
     locations = JSON.parse(response);
+    var html = "";
+    locations.items.forEach(item => {
+        console.log(item.name)
+    });
     console.log(locations)
 }
 
