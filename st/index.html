@@ -18,13 +18,12 @@
                 <span class="fs-4">Simple Device Viewer</span>
             </a>
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Auth</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Devices</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Devices</a></li>
             </ul>
             </header>
         </div>
         <div id="auth" class="container">
-            <form>
+            <form id="authform">
                 <div class="mb-3">
                   <label for="patToken" class="form-label">PAT</label>
                   <input type="password" class="form-control" id="patToken" aria-describedby="patTokenHelp">
@@ -32,6 +31,9 @@
                 </div>
                 <button type="submit" onclick="auth()" class="btn btn-primary">Submit</button>
               </form>
+        </div>
+        <div id="devices" class="container">
+
         </div>
     </main>
 
