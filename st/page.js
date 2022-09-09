@@ -14,7 +14,7 @@ function getDevices()
             callback(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/", true); // true for asynchronous 
-    xmlhttp.setRequestHeader("Authorization", "Bearer "+patToken);
+    xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.send(null);
 }
 function receiveDevices(response)
