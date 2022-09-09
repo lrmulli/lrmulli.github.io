@@ -1,5 +1,15 @@
 var patToken = "";
 var locations = {}
+const types = [
+    {
+        title: 'Title 1',
+        article: 'Article 1'
+    },
+    {
+        title: 'Title 2',
+        article: 'Article 2'
+    }
+]
 
 document.querySelector('#authform').addEventListener('submit', function(event) {
     patToken = document.querySelector('#patToken').value
