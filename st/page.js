@@ -1,10 +1,27 @@
 var patToken = "";
+var locations = {}
 
 document.querySelector('#authform').addEventListener('submit', function(event) {
     patToken = document.querySelector('#patToken').value
     //alert(patToken)
     getDevices()
 });
+
+function getLocations()
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        receiveDevices(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "https://api.smartthings.com/v1/locations/", true); // true for asynchronous 
+    xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
+    xmlHttp.send(null);
+}
+function receiveLocations(response)
+{
+ console.log(response)
+}
 
 function getDevices()
 {
