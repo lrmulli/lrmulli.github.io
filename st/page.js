@@ -25,7 +25,9 @@ function receiveLocations(response)
     var html = "";
     locations.items.forEach(item => {
         console.log(item.name);
-        html +='<div class="accordion-item"><h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">';
+        html +='<div class="accordion-item"><h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="'
+        html += item.locationId
+        html += '" aria-expanded="true" aria-controls="collapseOne">';
         html += item.name
         html +='</button></h2><div id="'
         html += item.locationId
