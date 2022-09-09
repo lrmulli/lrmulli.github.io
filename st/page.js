@@ -21,7 +21,8 @@ function getLocations()
 }
 function receiveLocations(response)
 {
- console.log(response)
+    locations = JSON.parse(response);
+    console.log(locations)
 }
 
 function getDevices()
