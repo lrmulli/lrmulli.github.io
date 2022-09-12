@@ -60,8 +60,16 @@ function receiveRooms(response)
         html += item.name
         html +='</button></h2><div id="'
         html += id
-        html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+id+'"></div></div></div>'
+        html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+locationId+'_'+id+'"></div></div></div>'
     });
+    var id = 'room_unassigned';
+    html +='<div class="accordion-item"><h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="'
+    html += id
+    html += '" aria-expanded="true" aria-controls="'+id+'">';
+    html += 'Unassigned'
+    html +='</button></h2><div id="'
+    html += id
+    html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+locationId+'_'+id+'"></div></div></div>'
     document.querySelector('#roomAccordian_location_'+locationId).innerHTML = html
 }
 function getDevices()
@@ -84,7 +92,15 @@ function receiveDevices(response)
         console.log(item.name);
         var id = 'device_'+item.deviceId;
         html += id+" - "+item.label+"<br>"
-        document.querySelector('#body_room_'+item.roomId).innerHTML += html
+        if(item.roomId === null)
+        {
+            document.querySelector('#body_'+item.location+'_room_unassigned').innerHTML += html
+        }
+        else
+        {
+            document.querySelector('#body_'+item.location+'_room_'+item.roomId).innerHTML += html
+        }
+        
     });
     
 }
