@@ -96,7 +96,7 @@ function receiveDevices(response)
     
     devices.items.forEach(item => {
         var html = "";
-        console.log(item.name);
+        console.log(item.label);
         var id = 'device_'+item.deviceId;
         html += id+" - "+item.label+"<br>"
         if(item.roomId === null)
