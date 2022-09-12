@@ -26,7 +26,7 @@ function receiveLocations(response)
     locations.items.forEach(item => {
         console.log(item.name);
         var id = 'location_'+item.locationId
-        html += '<div class="container"><h1>'+item.name+'</h1><hr><div class="container" id="'+id+'><div class="accordion" id="roomAccordian_'+id+'"></div></div></div>';
+        html += '<div class="container"><h1>'+item.name+'</h1><hr><div class="container" id="'+id+'"><div class="accordion" id="roomAccordian_'+id+'"></div></div></div>';
     });
     document.querySelector('#devices').innerHTML = html
     locations.items.forEach(item => {
