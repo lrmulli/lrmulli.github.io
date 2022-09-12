@@ -3,9 +3,9 @@ var locations = {}
 
 document.querySelector('#authform').addEventListener('submit', function(event) {
     patToken = document.querySelector('#patToken').value
-    //alert(patToken)
+    alert(patToken)
     getLocations();
-    getDevices();
+    //getDevices();
 });
 
 function getLocations()
