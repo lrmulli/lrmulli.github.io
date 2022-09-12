@@ -99,16 +99,16 @@ function receiveDevices(response)
         console.log(item.label);
         var id = 'device_'+item.deviceId;
         html += id+" - "+item.label+"<br>"
-        console.log(item.location)
+        console.log(item.locationId)
         console.log(item.roomId)
         console.log('#body_'+item.location+'_room_'+item.roomId)
         if(item.roomId === null)
         {
-            document.querySelector('#body_'+item.location+'_room_unassigned').innerHTML += html
+            document.querySelector('#body_'+item.locationId+'_room_unassigned').innerHTML += html
         }
         else
         {
-            document.querySelector('#body_'+item.location+'_room_'+item.roomId).innerHTML += html
+            document.querySelector('#body_'+item.locationId+'_room_'+item.roomId).innerHTML += html
         }
         
     });
