@@ -6,6 +6,7 @@ document.querySelector('#authform').addEventListener('submit', function(event) {
     alert(patToken)
     getLocations();
     //getDevices();
+    return false
 });
 
 function getLocations()
@@ -59,7 +60,7 @@ function receiveRooms(response)
         html += item.name
         html +='</button></h2><div id="'
         html += id
-        html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body"></div></div></div>'
+        html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+id+'"></div></div></div>'
     });
     document.querySelector('#roomAccordian_location_'+locationId).innerHTML = html
 }
@@ -76,7 +77,16 @@ function getDevices()
 }
 function receiveDevices(response)
 {
- console.log(response)
+    devices = JSON.parse(response);
+    
+    devices.items.forEach(item => {
+        var html = "";
+        console.log(item.name);
+        var id = 'device_'+item.deviceId;
+        html += id+" - "+item.label+"<br>"
+        document.querySelector('#body_room_'+item.roomId).innerHTML += html
+    });
+    
 }
 
 function httpGetAsync(theUrl, callback)
