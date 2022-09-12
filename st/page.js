@@ -1,7 +1,7 @@
 var patToken = "";
 var locations = {}
 
-$(document).ready(function() {
+document.onload(function() {
     let params = (new URL(document.location)).searchParams;
     let name = params.get("pat");
     getLocations();
