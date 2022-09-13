@@ -69,7 +69,9 @@ function receiveRooms(response)
         html += item.name
         html +='</button></h2><div id="'
         html += id
-        html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+locationId+'_'+id+'"></div></div></div>'
+        html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
+        html += '<table class="table"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody id="tbody_'+locationId+'_'+id+'"></tbody></table>'
+        html += '"</div></div></div>'
     });
     var id = 'room_undefined';
     html +='<div class="accordion-item"><h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="'
@@ -78,7 +80,9 @@ function receiveRooms(response)
     html += 'Unassigned'
     html +='</button></h2><div id="'
     html += id
-    html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+locationId+'_'+id+'"></div></div></div>'
+    html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
+    html += '<table class="table"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody id="tbody_'+locationId+'_'+id+'"></tbody></table>'
+    html += '"</div></div></div>'
     document.querySelector('#roomAccordian_location_'+locationId).innerHTML = html
 }
 function getDevices()
