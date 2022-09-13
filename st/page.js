@@ -1,5 +1,7 @@
 var patToken = "";
 var locations = {}
+var rooms = {}
+var devices = []
 
 window.addEventListener('load',function() {
     console.log("Loaded")
