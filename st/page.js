@@ -3,7 +3,7 @@ var locations = {}
 
 document.addEventListener('load',function() {
     let params = (new URL(document.location)).searchParams;
-    let name = params.get("pat");
+    patToken = params.get("pat");
     getLocations();
     getDevices(); 
     });
