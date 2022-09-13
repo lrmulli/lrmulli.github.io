@@ -1,12 +1,12 @@
 var patToken = "";
 var locations = {}
 
-document.onload = function() {
+document.addEventListener('load',function() {
     let params = (new URL(document.location)).searchParams;
     let name = params.get("pat");
     getLocations();
     getDevices(); 
-    };
+    });
 
 document.querySelector('#authform').addEventListener('submit', function(event) {
     patToken = document.querySelector('#patToken').value
