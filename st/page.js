@@ -18,7 +18,7 @@ document.querySelector('#authform').addEventListener('submit', function(event) {
     alert(patToken)
     getLocations();
     //getDevices();
-    return false
+    event.preventDefault();
 });
 
 document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', event => {
