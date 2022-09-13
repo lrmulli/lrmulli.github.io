@@ -33,7 +33,7 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
         if(item.deviceId == deviceId)
         {
             modalTitle.textContent = 'Device Info - '+item.label
-            jsonViewer.showJSON(JSON.stringify(item), maxLvl, colAt);
+            jsonViewer.showJSON(JSON.stringify(item), -1, 2);
         }
     });
 })
