@@ -108,7 +108,7 @@ function receiveDevices(response)
         var html = "";
         console.log(item.label);
         var id = 'device_'+item.deviceId;
-        html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><button type="button" id="button_'+item.deviceId+'" class="btn btn-info">Device Info</button></td></tr>'
+        html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm">Device Info</button></td></tr>'
         console.log(item)
         if(item.roomId === null)
         {
