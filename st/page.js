@@ -10,7 +10,10 @@ window.addEventListener('load',function() {
     let params = (new URL(document.location)).searchParams;
     patToken = params.get("pat");
     console.log(patToken)
-    getLocations(); 
+        if(patToken != "")
+        {
+            getLocations();
+        }
     });
 
 document.querySelector('#authform').addEventListener('submit', function(event) {
