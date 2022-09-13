@@ -2,8 +2,10 @@ var patToken = "";
 var locations = {}
 
 document.addEventListener('load',function() {
+    console.log("Loaded")
     let params = (new URL(document.location)).searchParams;
     patToken = params.get("pat");
+    console.log(patToken)
     getLocations();
     getDevices(); 
     });
