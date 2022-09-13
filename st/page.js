@@ -25,15 +25,13 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
   console.log(button)
   // Extract info from data-bs-* attributes
   const deviceId = button.getAttribute('data-bs-deviceid')
-  // If necessary, you could initiate an AJAX request here
-  // and then do the updating in a callback.
-  //
-  // Update the modal's content.
+
   const modalTitle = deviceInfoModal.querySelector('.modal-title')    
   devices.items.forEach(item => {
         if(item.deviceId == deviceId)
         {
             modalTitle.textContent = 'Device Info - '+item.label
+            document.querySelector('#deviceObjectCode').innerHTML = JSON.stringify(item)
         }
     });
 })
