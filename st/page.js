@@ -45,7 +45,7 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
             else if(btntype == "info_plus")
             {
                 modalTitle.textContent = 'Device Info+ - '+item.label
-                getDeviceState(deviceId)
+                getDeviceInfo(deviceId)
             }
         }
     });
