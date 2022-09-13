@@ -6,8 +6,7 @@ window.addEventListener('load',function() {
     let params = (new URL(document.location)).searchParams;
     patToken = params.get("pat");
     console.log(patToken)
-    getLocations();
-    getDevices(); 
+    getLocations(); 
     });
 
 document.querySelector('#authform').addEventListener('submit', function(event) {
@@ -18,8 +17,7 @@ document.querySelector('#authform').addEventListener('submit', function(event) {
     return false
 });
 
-const deviceInfoModal = document.getElementById('deviceInfoModal')
-deviceInfoModal.addEventListener('show.bs.modal', event => {
+document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
   const button = event.relatedTarget
   // Extract info from data-bs-* attributes
@@ -103,6 +101,7 @@ function receiveRooms(response)
     html += '<table class="table"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody id="tbody_'+locationId+'_'+id+'"></tbody></table>'
     html += '</div></div></div>'
     document.querySelector('#roomAccordian_location_'+locationId).innerHTML = html
+    getDevices();
 }
 function getDevices()
 {
