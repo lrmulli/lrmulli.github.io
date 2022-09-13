@@ -15,7 +15,6 @@ window.addEventListener('load',function() {
 
 document.querySelector('#authform').addEventListener('submit', function(event) {
     patToken = document.querySelector('#patToken').value
-    alert(patToken)
     getLocations();
     //getDevices();
     event.preventDefault();
