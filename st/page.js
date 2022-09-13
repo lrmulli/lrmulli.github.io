@@ -55,7 +55,7 @@ function getDeviceState(deviceId)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        jsonViewer(xmlHttp.responseText);
+        jsonObjViewer(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"/status", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
@@ -66,13 +66,13 @@ function getDeviceInfo(deviceId)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        jsonViewer(xmlHttp.responseText);
+        jsonObjViewer(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.send(null);
 }
-function jsonViewer(response)
+function jsonObjViewer(response)
 {
     resp = JSON.parse(response);
     jsonViewer.showJSON(resp, -1, 2);
