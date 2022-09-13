@@ -29,9 +29,13 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
   // and then do the updating in a callback.
   //
   // Update the modal's content.
-  const modalTitle = deviceInfoModal.querySelector('.modal-title')
-
-  modalTitle.textContent = 'Device Info - '+deviceId
+  const modalTitle = deviceInfoModal.querySelector('.modal-title')    
+  devices.items.forEach(item => {
+        if(item.deviceId == deviceId)
+        {
+            modalTitle.textContent = 'Device Info - '+item.label
+        }
+    });
 })
 
 function getLocations()
