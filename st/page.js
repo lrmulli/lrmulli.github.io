@@ -20,6 +20,7 @@ document.querySelector('#authform').addEventListener('submit', function(event) {
 document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
   const button = event.relatedTarget
+  console.log(button)
   // Extract info from data-bs-* attributes
   const deviceId = button.getAttribute('data-bs-deviceid')
   // If necessary, you could initiate an AJAX request here
