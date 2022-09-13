@@ -65,26 +65,26 @@ function receiveRooms(response)
         var headingId = 'heading_'+id
         var bodyId = 'body_'+id
         locationId = item.locationId;
-        html +='<div class="accordion-item"><h2 class="accordion-header" id="'+headingId+'"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="'
+        html +='<div class="accordion-item"><h2 class="accordion-header" id="'+headingId+'"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#'
         html += bodyId
         html += '" aria-expanded="true" aria-controls="'+bodyId+'">';
         html += item.name
         html +='</button></h2><div id="'
         html += bodyId
-        html += '" class="accordion-collapse collapse show" aria-labelledby="'+headingId+'" data-bs-parent="roomAccordian_'+locationId+'"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
+        html += '" class="accordion-collapse collapse show" aria-labelledby="'+headingId+'" data-bs-parent="#roomAccordian_'+locationId+'"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
         html += '<table class="table"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody id="tbody_'+locationId+'_'+id+'"></tbody></table>'
         html += '"</div></div></div>'
     });
     var id = 'room_undefined';
     var headingId = 'heading_'+id
     var bodyId = 'body_'+id
-    html +='<div class="accordion-item"><h2 class="accordion-header" id="'+headingId+'"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="'
+    html +='<div class="accordion-item"><h2 class="accordion-header" id="'+headingId+'"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#'
     html += bodyId
     html += '" aria-expanded="true" aria-controls="'+bodyId+'">';
     html += 'Unassigned'
     html +='</button></h2><div id="'
     html += bodyId
-    html += '" class="accordion-collapse collapse show" aria-labelledby="'+headingId+'" data-bs-parent="roomAccordian_'+locationId+'"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
+    html += '" class="accordion-collapse collapse show" aria-labelledby="'+headingId+'" data-bs-parent="#roomAccordian_'+locationId+'"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
     html += '<table class="table"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody id="tbody_'+locationId+'_'+id+'"></tbody></table>'
     html += '"</div></div></div>'
     document.querySelector('#roomAccordian_location_'+locationId).innerHTML = html
