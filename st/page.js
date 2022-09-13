@@ -2,6 +2,8 @@ var patToken = "";
 var locations = {}
 var rooms = {}
 var devices = []
+var jsonViewer = new JSONViewer();
+document.querySelector("#json").appendChild(jsonViewer.getContainer());
 
 window.addEventListener('load',function() {
     console.log("Loaded")
@@ -31,7 +33,7 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
         if(item.deviceId == deviceId)
         {
             modalTitle.textContent = 'Device Info - '+item.label
-            document.querySelector('#deviceObjectCode').innerHTML = JSON.stringify(item)
+            jsonViewer.showJSON(JSON.stringify(item), maxLvl, colAt);
         }
     });
 })
