@@ -4,7 +4,6 @@ var rooms = {}
 var devices = []
 var jsonViewer = new JSONViewer();
 document.querySelector("#json").appendChild(jsonViewer.getContainer());
-document.querySelector("#deviceStateJson").appendChild(jsonViewer.getContainer());
 
 window.addEventListener('load',function() {
     console.log("Loaded")
@@ -28,40 +27,48 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
   console.log(button)
   // Extract info from data-bs-* attributes
   const deviceId = button.getAttribute('data-bs-deviceid')
-
+  const btntype = button.getAttribute('data-bs-btntype')
   const modalTitle = deviceInfoModal.querySelector('.modal-title')    
   devices.items.forEach(item => {
         if(item.deviceId == deviceId)
         {
-            modalTitle.textContent = 'Device Info - '+item.label
-            jsonViewer.showJSON(item, -1, 2);
+            if(btntype == "info")
+            {
+                modalTitle.textContent = 'Device Info - '+item.label
+                jsonViewer.showJSON(item, -1, 2);
+            }
+            else if(btntype == "state")
+            {
+                modalTitle.textContent = 'Device State - '+item.label
+                getDeviceState(deviceId)
+            }
+            else if(btntype == "info_plus")
+            {
+                modalTitle.textContent = 'Device Info+ - '+item.label
+                getDeviceState(deviceId)
+            }
         }
     });
 })
-document.querySelector('#deviceStateModal').addEventListener('show.bs.modal', event => {
-    // Button that triggered the modal
-    const button = event.relatedTarget
-    console.log(button)
-    // Extract info from data-bs-* attributes
-    const deviceId = button.getAttribute('data-bs-deviceid')
-  
-    const modalTitle = deviceInfoModal.querySelector('.modal-title')    
-    devices.items.forEach(item => {
-          if(item.deviceId == deviceId)
-          {
-              modalTitle.textContent = 'Device State - '+item.label
-              getDeviceState(deviceId)
-          }
-      });
-  })
 function getDeviceState(deviceId)
 {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-        receiveDeviceState(xmlHttp.responseText);
+        jsonViewer(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"/status", true); // true for asynchronous 
+    xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
+    xmlHttp.send(null);
+}
+function getDeviceInfo(deviceId)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        jsonViewer(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.send(null);
 }
@@ -161,7 +168,7 @@ function receiveDevices(response)
         var html = "";
         console.log(item.label);
         var id = 'device_'+item.deviceId;
-        html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-deviceid="'+item.deviceId+'">Device Info</button></td></tr>'
+        html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'">Device Info</button><button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="state" data-bs-deviceid="'+item.deviceId+'">Device State</button></td></tr>'
         console.log(item)
         if(item.roomId === null)
         {
