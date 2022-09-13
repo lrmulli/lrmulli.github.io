@@ -104,16 +104,15 @@ function receiveDevices(response)
         var html = "";
         console.log(item.label);
         var id = 'device_'+item.deviceId;
-        html += id+" - "+item.label+"<br>"
+        html += '<tr><th scope="row">'+item.label+'</th><td>'+item.name+'</td><td>'+item.type+'</td><td>more</td></tr>'
         console.log(item)
-        console.log('#body_'+item.locationId+'_room_'+item.roomId)
         if(item.roomId === null)
         {
-            document.querySelector('#body_'+item.locationId+'_room_unassigned').innerHTML += html
+            document.querySelector('#tbody_'+item.locationId+'_room_unassigned').innerHTML += html
         }
         else
         {
-            document.querySelector('#body_'+item.locationId+'_room_'+item.roomId).innerHTML += html
+            document.querySelector('#tbody_'+item.locationId+'_room_'+item.roomId).innerHTML += html
         }
         
     });
