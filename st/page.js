@@ -69,7 +69,7 @@ function receiveRooms(response)
         html += id
         html += '" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body" id="body_'+locationId+'_'+id+'"></div></div></div>'
     });
-    var id = 'room_unassigned';
+    var id = 'room_undefined';
     html +='<div class="accordion-item"><h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="'
     html += id
     html += '" aria-expanded="true" aria-controls="'+id+'">';
@@ -100,7 +100,7 @@ function receiveDevices(response)
         var id = 'device_'+item.deviceId;
         html += id+" - "+item.label+"<br>"
         console.log(item)
-        console.log('#body_'+item.location+'_room_'+item.roomId)
+        console.log('#body_'+item.locationId+'_room_'+item.roomId)
         if(item.roomId === null)
         {
             document.querySelector('#body_'+item.locationId+'_room_unassigned').innerHTML += html
