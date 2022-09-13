@@ -71,7 +71,7 @@ function receiveRooms(response)
         html += item.name
         html +='</button></h2><div id="'
         html += bodyId
-        html += '" class="accordion-collapse collapse show" aria-labelledby="'+headingId+'" data-bs-parent="#roomAccordian_'+locationId+'"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
+        html += '" class="accordion-collapse collapse" aria-labelledby="'+headingId+'" data-bs-parent="#roomAccordian_'+locationId+'"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
         html += '<table class="table"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody id="tbody_'+locationId+'_'+id+'"></tbody></table>'
         html += '</div></div></div>'
     });
