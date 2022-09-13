@@ -99,8 +99,7 @@ function receiveDevices(response)
         console.log(item.label);
         var id = 'device_'+item.deviceId;
         html += id+" - "+item.label+"<br>"
-        console.log(item.locationId)
-        console.log(item.roomId)
+        console.log(item)
         console.log('#body_'+item.location+'_room_'+item.roomId)
         if(item.roomId === null)
         {
