@@ -4,6 +4,7 @@ var rooms = {}
 var devices = []
 var jsonViewer = new JSONViewer();
 document.querySelector("#json").appendChild(jsonViewer.getContainer());
+document.querySelector("#deviceStateJson").appendChild(jsonViewer.getContainer());
 
 window.addEventListener('load',function() {
     console.log("Loaded")
@@ -37,7 +38,38 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
         }
     });
 })
-
+document.querySelector('#deviceStateModal').addEventListener('show.bs.modal', event => {
+    // Button that triggered the modal
+    const button = event.relatedTarget
+    console.log(button)
+    // Extract info from data-bs-* attributes
+    const deviceId = button.getAttribute('data-bs-deviceid')
+  
+    const modalTitle = deviceInfoModal.querySelector('.modal-title')    
+    devices.items.forEach(item => {
+          if(item.deviceId == deviceId)
+          {
+              modalTitle.textContent = 'Device State - '+item.label
+              getDeviceState(deviceId)
+          }
+      });
+  })
+function getDeviceState(deviceId)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        receiveDeviceState(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"/status", true); // true for asynchronous 
+    xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
+    xmlHttp.send(null);
+}
+function jsonViewer(response)
+{
+    resp = JSON.parse(response);
+    jsonViewer.showJSON(resp, -1, 2);
+}
 function getLocations()
 {
     var xmlHttp = new XMLHttpRequest();
