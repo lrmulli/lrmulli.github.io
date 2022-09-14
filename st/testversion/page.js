@@ -159,7 +159,7 @@ function getDevices(locationId)
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
         receiveDevices(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/", true); // true for asynchronous 
+    xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+filter, true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.send(null);
 }
