@@ -43,7 +43,7 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
     else if(btntype == "delete")
     {
         modalTitle.textContent = 'Delete - '+item.label
-        //deleteDevice(deviceId)
+        deleteDevice(deviceId)
     }
 })
 function getDeviceState(deviceId)
