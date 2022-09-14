@@ -193,7 +193,6 @@ function processDevices()
         html += '<button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'">Info</button>'
         html += '<button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="state" data-bs-deviceid="'+item.deviceId+'">State</button>'
         html += '</div></td></tr>'
-        console.log(item)
         if(item.roomId === null)
         {
             document.querySelector('#tbody_'+item.locationId+'_room_unassigned').innerHTML += html
