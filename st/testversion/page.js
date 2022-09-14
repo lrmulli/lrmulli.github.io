@@ -31,26 +31,22 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
   const deviceId = button.getAttribute('data-bs-deviceid')
   const btntype = button.getAttribute('data-bs-btntype')
   const modalTitle = deviceInfoModal.querySelector('.modal-title')    
-  devices.items.forEach(item => {
-        if(item.deviceId == deviceId)
-        {
-            if(btntype == "info")
-            {
-                modalTitle.textContent = 'Device Info - '+item.label
-                jsonViewer.showJSON(item, -1, 2);
-            }
-            else if(btntype == "state")
-            {
-                modalTitle.textContent = 'Device State - '+item.label
-                getDeviceState(deviceId)
-            }
-            else if(btntype == "info_plus")
-            {
-                modalTitle.textContent = 'Device Info+ - '+item.label
-                getDeviceInfo(deviceId)
-            }
-        }
-    });
+  var item = devices[deviceId]
+    if(btntype == "info")
+    {
+        modalTitle.textContent = 'Device Info - '+item.label
+        jsonViewer.showJSON(item, -1, 2);
+    }
+    else if(btntype == "state")
+    {
+        modalTitle.textContent = 'Device State - '+item.label
+        getDeviceState(deviceId)
+    }
+    else if(btntype == "info_plus")
+    {
+        modalTitle.textContent = 'Device Info+ - '+item.label
+        getDeviceInfo(deviceId)
+    }
 })
 function getDeviceState(deviceId)
 {
@@ -165,11 +161,19 @@ function getDevices()
 }
 function receiveDevices(response)
 {
-    devices = JSON.parse(response);
+    d = JSON.parse(response);
     
-    devices.items.forEach(item => {
+    d.items.forEach(item => {
+        devices[item.deviceId] = item        
+    });
+    processDevices()
+}
+function processDevices()
+{   
+    devices.forEach(item => {
         var html = "";
-        console.log(item.label);
+        console.log("processing device")
+        console.log(item);
         var id = 'device_'+item.deviceId;
         html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><div class="btn-group" role="group" aria-label="Basic example">'
         html += '<button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'">Info</button>'
@@ -185,8 +189,7 @@ function receiveDevices(response)
             document.querySelector('#tbody_'+item.locationId+'_room_'+item.roomId).innerHTML += html
         }
         
-    });
-    
+    });  
 }
 
 function httpGetAsync(theUrl, callback)
