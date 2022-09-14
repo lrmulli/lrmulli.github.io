@@ -42,10 +42,10 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
         modalTitle.textContent = 'Device State - '+item.label
         getDeviceState(deviceId)
     }
-    else if(btntype == "info_plus")
+    else if(btntype == "delete")
     {
-        modalTitle.textContent = 'Device Info+ - '+item.label
-        getDeviceInfo(deviceId)
+        modalTitle.textContent = 'Delete - '+item.label
+        deleteDevice(deviceId)
     }
 })
 function getDeviceState(deviceId)
@@ -203,8 +203,9 @@ function processDevices()
         console.log(item);
         var id = 'device_'+item.deviceId;
         html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><div class="btn-group" role="group" aria-label="Basic example">'
-        html += '<button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'">Info</button>'
-        html += '<button type="button" id="button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="state" data-bs-deviceid="'+item.deviceId+'">State</button>'
+        html += '<button type="button" id="info_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'">Info</button>'
+        html += '<button type="button" id="state_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="state" data-bs-deviceid="'+item.deviceId+'">State</button>'
+        html += '<button type="button" id="delet_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="delete" data-bs-deviceid="'+item.deviceId+'">State</button>'
         html += '</div></td></tr>'
         if(item.roomId === null)
         {
@@ -216,7 +217,20 @@ function processDevices()
         }
     }
 }
+function deleteDevice(deviceId)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        jsonObjViewer(xmlHttp.responseText)
+    }
+    xmlHttp.open("DELETE", "https://api.smartthings.com/v1/devices/"+deviceId, true); // true for asynchronous 
+    xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
+    xmlHttp.send(null);
+}
 
+
+//http functions
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
