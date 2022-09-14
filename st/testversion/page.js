@@ -99,7 +99,6 @@ function receiveLocations(response)
     locations.items.forEach(item => {
         getRooms(item.locationId)
     });
-    getDevices();
 }
 function getRooms(locationid)
 {
@@ -146,10 +145,15 @@ function receiveRooms(response)
     html += '<div class="table-responsive"><table class="table table-hover"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody id="tbody_'+locationId+'_'+id+'"></tbody></table>'
     html += '</div></div></div></div>'
     document.querySelector('#roomAccordian_location_'+locationId).innerHTML = html
-    
+    getDevices(locationId);
 }
-function getDevices()
+function getDevices(locationId)
 {
+    var filter = "?";
+    if(locationId != "")
+    {
+        filter += "locationId="+locationId
+    }
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
