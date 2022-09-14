@@ -20,7 +20,6 @@ window.addEventListener('load',function() {
 document.querySelector('#authform').addEventListener('submit', function(event) {
     patToken = document.querySelector('#patToken').value
     getLocations();
-    //getDevices();
     event.preventDefault();
 });
 
@@ -146,21 +145,26 @@ function receiveRooms(response)
     html += '<div class="table-responsive"><table class="table table-hover"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody class="room_tbody" id="tbody_'+locationId+'_'+id+'"></tbody></table>'
     html += '</div></div></div></div>'
     document.querySelector('#roomAccordian_location_'+locationId).innerHTML = html
-    getDevices(locationId);
+    getDevices(locationId,"");
 }
-function getDevices(locationId)
+function getDevices(locationId,link_override)
 {
     var filter = "?";
     if(locationId != "")
     {
         filter += "locationId="+locationId
     }
+    var link = "https://api.smartthings.com/v1/devices/"+filter
+    if(link_override != "")
+    {
+        link = link_override
+    }
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
         receiveDevices(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+filter, true); // true for asynchronous 
+    xmlHttp.open("GET", link, true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.send(null);
 }
@@ -171,7 +175,16 @@ function receiveDevices(response)
     d.items.forEach(item => {
         devices[item.deviceId] = item        
     });
-    processDevices()
+    if(d._links?.next?.href)
+    {
+        console.log('getting more devices')
+        getDevices("",d._links.next.href)
+    }
+    else 
+    {
+        console.log("no more devices to get for this location")
+        processDevices()
+    }
 }
 function emptyRooms()
 {
