@@ -174,9 +174,8 @@ function receiveDevices(response)
 }
 function emptyRooms()
 {
-    const roomtbodys = document.querySelectorAll(".room_tbody");
-    roomtbodys.forEach((item) => {
-        item.innerHTML = ""; //empty all the rooms 
+    document.querySelectorAll(".room_tbody").forEach((item) => {
+        document.querySelector("#"+item.id).innerHTML = ""; 
     });
 }
 function processDevices()
