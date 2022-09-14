@@ -4,6 +4,7 @@ var rooms = {}
 var devices = []
 var jsonViewer = new JSONViewer();
 document.querySelector("#json").appendChild(jsonViewer.getContainer());
+var lastDevicesReceived = {}
 
 window.addEventListener('load',function() {
     console.log("Loaded")
@@ -166,7 +167,7 @@ function getDevices(locationId)
 function receiveDevices(response)
 {
     d = JSON.parse(response);
-    
+    lastDevicesReceived = d;
     d.items.forEach(item => {
         devices[item.deviceId] = item        
     });
@@ -175,14 +176,12 @@ function receiveDevices(response)
 function emptyRooms()
 {
     document.querySelectorAll(".room_tbody").forEach((item) => {
-        var selector = "#"+item.id
-        console.log(selector)
         document.querySelector("#"+item.id).innerHTML = ""; 
     });
 }
 function processDevices()
 {   
-    emptyRooms() //empty all the rooms 
+    emptyRooms() //empty all the rooms - so that they are clear to be re-added
     for (let x in devices) 
     {
         var item = devices[x];
