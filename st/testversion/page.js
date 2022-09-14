@@ -223,7 +223,8 @@ function deleteDevice(deviceId)
     }
     xmlHttp.open("DELETE", "https://api.smartthings.com/v1/devices/"+deviceId, true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
-    //xmlHttp.send(null);
+    //disabled the delete capability
+    //xmlHttp.send(null); 
 }
 
 
