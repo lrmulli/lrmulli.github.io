@@ -7,7 +7,6 @@ document.querySelector("#json").appendChild(jsonViewer.getContainer());
 var lastDevicesReceived = {}
 
 window.addEventListener('load',function() {
-    console.log("Loaded")
     let params = (new URL(document.location)).searchParams;
     patToken = params.get("pat");
     console.log(patToken)
@@ -26,7 +25,6 @@ document.querySelector('#authform').addEventListener('submit', function(event) {
 document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
   const button = event.relatedTarget
-  console.log(button)
   // Extract info from data-bs-* attributes
   const deviceId = button.getAttribute('data-bs-deviceid')
   const btntype = button.getAttribute('data-bs-btntype')
@@ -91,7 +89,6 @@ function receiveLocations(response)
     locations = JSON.parse(response);
     var html = "";
     locations.items.forEach(item => {
-        console.log(item.name);
         var id = 'location_'+item.locationId
         html += '<div class="container"><h1>'+item.name+'</h1><hr><div class="container" id="'+id+'"><div class="accordion" id="roomAccordian_'+id+'"></div></div></div>';
     });
@@ -117,7 +114,6 @@ function receiveRooms(response)
     var html = "";
     var locationId = "";
     rooms.items.forEach(item => {
-        console.log(item.name);
         var id = 'room_'+item.roomId;
         var headingId = 'heading_'+id
         var bodyId = 'body_'+id
@@ -199,8 +195,8 @@ function processDevices()
     {
         var item = devices[x];
         var html = "";
-        console.log("processing device")
-        console.log(item);
+        //console.log("processing device")
+        //console.log(item);
         var id = 'device_'+item.deviceId;
         html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><div class="btn-group" role="group" aria-label="Basic example">'
         html += '<button type="button" id="info_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'">Info</button>'
