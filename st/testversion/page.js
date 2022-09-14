@@ -170,7 +170,9 @@ function receiveDevices(response)
 }
 function processDevices()
 {   
-    devices.forEach(item => {
+    for (let x in devices) 
+    {
+        var item = devices[x];
         var html = "";
         console.log("processing device")
         console.log(item);
@@ -188,8 +190,7 @@ function processDevices()
         {
             document.querySelector('#tbody_'+item.locationId+'_room_'+item.roomId).innerHTML += html
         }
-        
-    });  
+    }
 }
 
 function httpGetAsync(theUrl, callback)
