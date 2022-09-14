@@ -175,7 +175,9 @@ function receiveDevices(response)
 function emptyRooms()
 {
     document.querySelectorAll(".room_tbody").forEach((item) => {
-        document.querySelector("#"+item.id).innerHTML = ""; 
+        var selector = "#"+item.id
+        console.log(selector)
+        //document.querySelector("#"+item.id).innerHTML = ""; 
     });
 }
 function processDevices()
