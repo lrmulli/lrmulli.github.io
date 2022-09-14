@@ -43,7 +43,7 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
     else if(btntype == "delete")
     {
         modalTitle.textContent = 'Delete - '+item.label
-        deleteDevice(deviceId)
+        //deleteDevice(deviceId)
     }
 })
 function getDeviceState(deviceId)
@@ -167,6 +167,7 @@ function getDevices(locationId,link_override)
 function receiveDevices(response)
 {
     d = JSON.parse(response);
+    console.log('Received '+d.items.length+' devices!')
     lastDevicesReceived = d;
     d.items.forEach(item => {
         devices[item.deviceId] = item        
