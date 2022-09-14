@@ -142,7 +142,7 @@ function receiveRooms(response)
     html +='</button></h2><div id="'
     html += bodyId
     html += '" class="accordion-collapse collapse" aria-labelledby="'+headingId+'" data-bs-parent="#roomAccordian_location_'+locationId+'"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
-    html += '<div class="table-responsive"><table class="table table-hover"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody id="tbody_'+locationId+'_'+id+'"></tbody></table>'
+    html += '<div class="table-responsive"><table class="table table-hover"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody class="room_tbody" id="tbody_'+locationId+'_'+id+'"></tbody></table>'
     html += '</div></div></div></div>'
     document.querySelector('#roomAccordian_location_'+locationId).innerHTML = html
     getDevices(locationId);
@@ -172,8 +172,16 @@ function receiveDevices(response)
     });
     processDevices()
 }
+function emptyRooms()
+{
+    const roomtbodys = document.querySelectorAll(".room_tbody");
+    roomtbodys.forEach((item) => {
+        item.innerHTML = ""; //empty all the rooms 
+    });
+}
 function processDevices()
 {   
+    emptyRooms() //empty all the rooms 
     for (let x in devices) 
     {
         var item = devices[x];
