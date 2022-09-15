@@ -40,6 +40,11 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
         modalTitle.textContent = 'Device State - '+item.label
         getDeviceState(deviceId)
     }
+    else if(btntype == "health")
+    {
+        modalTitle.textContent = 'Device Health - '+item.label
+        getDeviceHealth(deviceId)
+    }
     else if(btntype == "delete")
     {
         modalTitle.textContent = 'Delete - '+item.label
@@ -54,6 +59,17 @@ function getDeviceState(deviceId)
         jsonObjViewer(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"/status", true); // true for asynchronous 
+    xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
+    xmlHttp.send(null);
+}
+function getDeviceHealth(deviceId)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        jsonObjViewer(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"/health", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.send(null);
 }
@@ -202,6 +218,7 @@ function processDevices()
         html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><div class="btn-group" role="group" aria-label="Basic example">'
         html += '<button type="button" id="info_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'">Info</button>'
         html += '<button type="button" id="state_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="state" data-bs-deviceid="'+item.deviceId+'">State</button>'
+        html += '<button type="button" id="health_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="health" data-bs-deviceid="'+item.deviceId+'">Health</button>'
         //html += '<button type="button" id="delet_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="delete" data-bs-deviceid="'+item.deviceId+'">Delete</button>'
         html += '</div></td></tr>'
         if(item.roomId === null)
