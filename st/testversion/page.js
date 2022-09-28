@@ -28,7 +28,8 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
   // Extract info from data-bs-* attributes
   const deviceId = button.getAttribute('data-bs-deviceid')
   const btntype = button.getAttribute('data-bs-btntype')
-  const modalTitle = deviceInfoModal.querySelector('.modal-title')    
+  const modalTitle = deviceInfoModal.querySelector('.modal-title')
+  jsonViewer.showJSON({}, -1, 2);    
   var item = devices[deviceId]
     if(btntype == "info")
     {
