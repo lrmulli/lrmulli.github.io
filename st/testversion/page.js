@@ -76,7 +76,7 @@ function getDevicePreferences(deviceId)
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"/preferences", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
-    xmlHttp.setRequestHeader("Accept", "application/json");
+    xmlHttp.setRequestHeader("Accept", "application/vnd.smartthings+json;v=20170916");
     xmlHttp.send(null);
 }
 function getDeviceHealth(deviceId)
