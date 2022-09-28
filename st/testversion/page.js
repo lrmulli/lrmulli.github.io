@@ -76,6 +76,7 @@ function getDevicePreferences(deviceId)
     }
     xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"/preferences", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
+    xmlHttp.setRequestHeader("Accept", "application/json");
     xmlHttp.send(null);
 }
 function getDeviceHealth(deviceId)
@@ -232,7 +233,7 @@ function processDevices()
         //console.log(item);
         var id = 'device_'+item.deviceId;
         html += '<tr><td>'+item.label+'</td><td>'+item.name+'</td><td>'+item.type+'</td><td><div class="btn-group" role="group" aria-label="Basic example">'
-        html += '<button type="button" id="info_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'">Info</button>'
+        html += '<button type="button" id="info_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="info" data-bs-deviceid="'+item.deviceId+'"><i class="bi bi-info-square-fill"></i></button>'
         html += '<button type="button" id="prefs_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="prefs" data-bs-deviceid="'+item.deviceId+'">Preferences</button>'
         html += '<button type="button" id="state_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="state" data-bs-deviceid="'+item.deviceId+'">State</button>'
         html += '<button type="button" id="health_button_'+item.deviceId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btntype="health" data-bs-deviceid="'+item.deviceId+'">Health</button>'
