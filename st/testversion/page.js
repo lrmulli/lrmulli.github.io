@@ -74,7 +74,7 @@ function getDevicePreferences(deviceId)
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
         jsonObjViewer(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", "https://api.smartthings.com/v1/devices/"+deviceId+"/preferences", true); // true for asynchronous 
+    xmlHttp.open("GET", "https://api.smartthings.com/devices/"+deviceId+"/preferences", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.setRequestHeader("Accept", "application/vnd.smartthings+json;v=20170916");
     xmlHttp.send(null);
