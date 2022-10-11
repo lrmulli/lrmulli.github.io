@@ -23,7 +23,14 @@ document.querySelector('#authform').addEventListener('submit', function(event) {
     event.preventDefault();
 });
 document.querySelector('#addDeviceButton').addEventListener("click", function() {
+    const roomToAddTo = document.querySelector('#roomToAddTo').value
+    const newDeviceType = document.querySelector('#newDeviceType').value
+    const newDeviceName = document.querySelector('#newDeviceName').value
+    var item = fullRoomList[roomToAddTo]
+    const newDeviceLocation = item.locationId 
     alert('hello')
+    alert(newDeviceType)
+    //addVirtualDevice(name,roomToAddTo,locationId,newDeviceType)
   });
 document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
