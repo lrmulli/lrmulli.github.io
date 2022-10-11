@@ -193,7 +193,7 @@ function receiveRooms(response)
         
         html += 'Room Controls: <div class="btn-group" role="group" aria-label="Room Controls">';
         html += '<button type="button" id="add_virtual_device_to_'+item.roomId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btngroup="room" data-bs-btntype="add_virtual" data-bs-roomid="'+item.roomId+'">Add Virtual Device</button>'
-        html += '</div>';
+        html += '</div><HR>';
         
         html += '<div class="table-responsive"><table class="table table-hover"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody class="room_tbody" id="tbody_'+locationId+'_'+id+'"></tbody></table>'
         html += '</div></div></div></div>'
