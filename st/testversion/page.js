@@ -28,9 +28,7 @@ document.querySelector('#addDeviceButton').addEventListener("click", function() 
     const newDeviceName = document.querySelector('#newDeviceName').value
     var item = fullRoomList[roomToAddTo]
     const newDeviceLocation = item.locationId 
-    alert('hello')
-    alert(newDeviceType)
-    addVirtualDevice(name,roomToAddTo,locationId,newDeviceType)
+    addVirtualDevice(name,roomToAddTo,newDeviceLocation,newDeviceType)
   });
 document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
