@@ -30,7 +30,7 @@ document.querySelector('#addDeviceButton').addEventListener("click", function() 
     const newDeviceLocation = item.locationId 
     alert('hello')
     alert(newDeviceType)
-    //addVirtualDevice(name,roomToAddTo,locationId,newDeviceType)
+    addVirtualDevice(name,roomToAddTo,locationId,newDeviceType)
   });
 document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
@@ -317,7 +317,8 @@ function addVirtualDevice(name,roomId,locationId,type)
     postdata.owner = {}
     postdata.owner.ownerType = "LOCATION"
     postdata.owner.ownerId = locationId
-
+    console.log("Attempting to add virtual device")
+    console.log(postdata)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -326,7 +327,7 @@ function addVirtualDevice(name,roomId,locationId,type)
     xmlHttp.open("POST", "https://api.smartthings.com/virtualdevices/prototypes", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlHttp.send(JSON.stringify(postdata));
+    //xmlHttp.send(JSON.stringify(postdata));
 }
 function processAddVirtualDevice(response)
 {
