@@ -48,6 +48,36 @@
             </div>
             <div id="deviceInfoModalBody" class="modal-body">
               <div id="json"></div>
+              <div style="display:none" id="virtualDeviceForm">
+                <label for="roomToAddTo" class="form-label">Room Id</label>
+                <input type="text" disabled class="form-control" id="roomToAddTo" aria-describedby="roomToAddTo">
+                <div id="roomToAddTo" class="form-text">Please enter your room id</div>
+                <label for="newDeviceName" class="form-label">Device Name</label>
+                <input type="text" class="form-control" id="newDeviceName" aria-describedby="newDeviceNameDesc">
+                <div id="newDeviceNameDesc" class="form-text">Please enter your a name for your new device</div>
+                <label for="newDeviceType" class="form-label">Device Type</label>
+                <select class="form-control" id="newDeviceType" aria-describedby="newDeviceTypeDesc">
+                  <option value="VIRTUAL_SWITCH">Switch</option>
+                  <option value="VIRTUAL_DIMMER_SWITCH">Dimmer Switch</option> 
+                  <option value="VIRTUAL_BUTTON">Button</option> 
+                  <option value="VIRTUAL_CAMERA">Camera</option> 
+                  <option value="VIRTUAL_COLOR_BULB">Color Bulb</option> 
+                  <option value="VIRTUAL_CONTACT_SENSOR">Contact Sensor</option> 
+                  <option value="VIRTUAL_DIMMER">Dimmer (no switch)</option> 
+                  <option value="VIRTUAL_GARAGE_DOOR_OPENER">Garage Door Opener</option> 
+                  <option value="VIRTUAL_LOCK">Lock</option> 
+                  <option value="VIRTUAL_METERED_SWITCH">Metered Switch</option> 
+                  <option value="VIRTUAL_MOTION_SENSOR">Motion Sensor</option> 
+                  <option value="VIRTUAL_MULTI_SENSOR">Multi-Sensor</option>
+                  <option value="VIRTUAL_PRESENCE_SENSOR">Presence Sensor</option> 
+                  <option value="VIRTUAL_REFRIGERATOR">Refrigerator</option> 
+                  <option value="VIRTUAL_RGBW_BULB">RGBW Bulb</option> 
+                  <option value="VIRTUAL_SIREN">Siren</option> 
+                  <option value="VIRTUAL_THERMOSTAT">Thermostat</option>  
+                </select>
+                <div id="newDeviceTypeDesc" class="form-text">Please choose a device type</div>
+                <button type="button" id="addDeviceButton" class="btn btn-primary">Add</button>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
