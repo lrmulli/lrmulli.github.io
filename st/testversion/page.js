@@ -162,7 +162,7 @@ function getRooms(locationid)
 function receiveRooms(response)
 {
     rooms = JSON.parse(response);
-    console.log('Received '+r.items.length+' rooms!')
+    console.log('Received '+rooms.items.length+' rooms!')
     rooms.items.forEach(item => {
         fullRoomList[item.roomId] = item        
     });
