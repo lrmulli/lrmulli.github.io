@@ -22,7 +22,9 @@ document.querySelector('#authform').addEventListener('submit', function(event) {
     getLocations();
     event.preventDefault();
 });
-
+document.querySelector('#deviceInfoModal').addEventListener("click", function() {
+    alert('hello')
+  });
 document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
   const button = event.relatedTarget
