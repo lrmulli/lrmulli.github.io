@@ -30,7 +30,12 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
   const btntype = button.getAttribute('data-bs-btntype')
   const btngroup = button.getAttribute('data-bs-btngroup')
   const modalTitle = deviceInfoModal.querySelector('.modal-title')
-  jsonViewer.showJSON({}, -1, 2);    
+  jsonViewer.showJSON({}, -1, 2);
+  
+  //show and hide the default elements
+  document.getElementById("virtualDeviceForm").style.display = "none";
+  document.getElementById("json").style.display = "block";
+  
   //data-bs-btngroup="device"
   if(btngroup == "device")
   {
@@ -71,6 +76,8 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
     if(btntype == "add_virtual")
     {
         modalTitle.textContent = 'Add Virtual Device - '+item.name
+        document.getElementById("virtualDeviceForm").style.display = "block";
+        document.getElementById("json").style.display = "none";
     }
   }
 })
