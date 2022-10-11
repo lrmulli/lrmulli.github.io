@@ -337,7 +337,7 @@ function addVirtualDevice(name,roomId,locationId,type)
     xmlHttp.open("POST", "https://api.smartthings.com/virtualdevices/prototypes", true); // true for asynchronous 
     xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
     xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    //xmlHttp.send(JSON.stringify(postdata));
+    xmlHttp.send(JSON.stringify(postdata));
 }
 function processAddVirtualDevice(response)
 {
