@@ -7,6 +7,17 @@ var jsonViewer = new JSONViewer();
 document.querySelector("#json").appendChild(jsonViewer.getContainer());
 var lastDevicesReceived = {}
 
+function reloadData()
+{
+    locations = {}
+    rooms = {}
+    fullRoomList = {}
+    devices = []
+    jsonViewer = new JSONViewer();
+    lastDevicesReceived = {}
+    getLocations();
+}
+
 window.addEventListener('load',function() {
     let params = (new URL(document.location)).searchParams;
     patToken = params.get("pat");
