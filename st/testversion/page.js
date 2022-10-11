@@ -168,15 +168,15 @@ function receiveRooms(response)
         locationId = item.locationId;
         html +='<div class="accordion-item"><h2 class="accordion-header" id="'+headingId+'"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#'
         html += bodyId
-        html += '" aria-expanded="false" aria-controls="'+bodyId+'"';
+        html += '" aria-expanded="false" aria-controls="'+bodyId+'">';
+        html += item.name
+        html +='</button>'
 
         html += '<div class="btn-group" role="group" aria-label="Room Controls">';
         html += '<button type="button" id="add_virtual_device_to_'+item.roomId+'" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#deviceInfoModal" data-bs-btngroup="room" data-bs-btntype="add_virtual" data-bs-roomid="'+item.roomId+'">Add Virtual Device</button>'
         html += '</div>';
 
-        html += '>';
-        html += item.name
-        html +='</button></h2><div id="'
+        html +='</h2><div id="'
         html += bodyId
         html += '" class="accordion-collapse collapse" aria-labelledby="'+headingId+'" data-bs-parent="#roomAccordian_location_'+locationId+'"><div class="accordion-body" id="body_'+locationId+'_'+id+'">'
         html += '<div class="table-responsive"><table class="table table-hover"><thead><tr><th scope="col">Label</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">More Info</th></tr></thead><tbody class="room_tbody" id="tbody_'+locationId+'_'+id+'"></tbody></table>'
