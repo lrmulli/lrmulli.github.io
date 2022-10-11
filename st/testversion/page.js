@@ -66,8 +66,7 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
   {
     if(btntype == "add_virtual")
     {
-        modalTitle.textContent = 'Device Info - '+item.label
-        jsonViewer.showJSON(item, -1, 2);
+        modalTitle.textContent = 'Add Virtual Device'
     }
   }
 })
