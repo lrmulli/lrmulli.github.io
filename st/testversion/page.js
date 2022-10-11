@@ -344,6 +344,7 @@ function processAddVirtualDevice(response)
     document.getElementById("virtualDeviceForm").style.display = "none";
     document.getElementById("json").style.display = "block";
     jsonObjViewer(response)
+    reloadData()
 }
 
 //http functions
