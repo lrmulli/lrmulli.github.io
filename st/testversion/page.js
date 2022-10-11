@@ -1,6 +1,7 @@
 var patToken = "";
 var locations = {}
 var rooms = {}
+var fullRoomList = {}
 var devices = []
 var jsonViewer = new JSONViewer();
 document.querySelector("#json").appendChild(jsonViewer.getContainer());
@@ -64,9 +65,12 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
   }
   else if(btngroup == "room")
   {
+    const roomId = button.getAttribute('data-bs-roomid')
+  
+    var item = fullRoomList[roomId]
     if(btntype == "add_virtual")
     {
-        modalTitle.textContent = 'Add Virtual Device'
+        modalTitle.textContent = 'Add Virtual Device - '+item.name
     }
   }
 })
@@ -158,6 +162,10 @@ function getRooms(locationid)
 function receiveRooms(response)
 {
     rooms = JSON.parse(response);
+    console.log('Received '+r.items.length+' rooms!')
+    rooms.items.forEach(item => {
+        fullRoomList[item.roomId] = item        
+    });
     var html = "";
     var locationId = "";
     rooms.items.forEach(item => {
