@@ -298,7 +298,32 @@ function deleteDevice(deviceId)
     //disabled the delete capability
     //xmlHttp.send(null); 
 }
+function addVirtualDevice(name,roomId,locationId,type)
+{
+    var postdata = {};
+    postdata.name = name;
+    postdata.roomId = roomId;
+    postdata.prototype = type;
+    postdata.owner = {}
+    postdata.owner.ownerType = "LOCATION"
+    postdata.owner.ownerId = locationId
 
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        processAddVirtualDevice(xmlHttp.responseText)
+    }
+    xmlHttp.open("POST", "https://api.smartthings.com/virtualdevices/prototypes", true); // true for asynchronous 
+    xmlHttp.setRequestHeader("Authorization", "Bearer "+patToken);
+    xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlHttp.send(JSON.stringify(postdata));
+}
+function processAddVirtualDevice(response)
+{
+    document.getElementById("virtualDeviceForm").style.display = "none";
+    document.getElementById("json").style.display = "block";
+    jsonObjViewer(response)
+}
 
 //http functions
 function httpGetAsync(theUrl, callback)
