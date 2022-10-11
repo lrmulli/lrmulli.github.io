@@ -88,6 +88,7 @@ document.querySelector('#deviceInfoModal').addEventListener('show.bs.modal', eve
         document.getElementById("virtualDeviceForm").style.display = "block";
         document.getElementById("json").style.display = "none";
         document.querySelector('#roomToAddTo').value = roomId
+        document.querySelector('#newDeviceName').value = "VirtualDevice"
     }
   }
 })
